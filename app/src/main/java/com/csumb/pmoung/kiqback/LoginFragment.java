@@ -73,7 +73,7 @@ public class LoginFragment extends Fragment {
 
     private void displayWelcomeMessage(Profile profile){
         if(profile != null){
-            mTextDetails.setText("Welcome " + profile.getFirstName());
+            mTextDetails.setText("Welcome " + profile.getName());
         }
     }
 
