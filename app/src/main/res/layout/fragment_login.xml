@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.csumb.pmoung.kiqback.LoginFragment">
 
@@ -17,7 +18,19 @@
             android:id="@+id/logo"
             android:src="@drawable/likes2chill"/>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1">
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/login_button"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/text_details" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,8 +44,6 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp" />
-
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,8 +55,4 @@
             android:layout_height="wrap_content"
             android:id="@+id/welcomeNameLoginFragment"/>
     </LinearLayout>
-
-
-
-
 </LinearLayout>
