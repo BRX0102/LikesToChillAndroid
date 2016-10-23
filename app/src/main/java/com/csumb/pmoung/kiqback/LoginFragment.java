@@ -17,6 +17,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -34,9 +35,9 @@ public class LoginFragment extends Fragment {
         public void onSuccess(LoginResult loginResult) {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
-            if(profile != null){
-                mTextDetails.setText("Welcome " + profile.getName());
-            }
+            displayWelcomeMessage(profile);
+
+
 
         }
 
@@ -76,9 +77,14 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    private void setupTextDetails(View view){
+        mTextDetails = (TextView) view.findViewById(R.id.text_details);
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupTextDetails(view);
         LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
         loginButton.setFragment(this);
