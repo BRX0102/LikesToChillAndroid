@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/logo"
-            android:src="@drawable/likes2chill"/>
+            android:src="@drawable/likes2chilllogo"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
