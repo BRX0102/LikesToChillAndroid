@@ -37,7 +37,7 @@ public class LoginFragment extends Fragment {
             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
 
-
+//            Intent to profile create when successfull
 
         }
 
@@ -96,6 +96,10 @@ public class LoginFragment extends Fragment {
         super.onResume();
         Profile profile = Profile.getCurrentProfile();
         displayWelcomeMessage(profile);
+
+//        Intent to main if resuming
+//        Intent i = new Intent(LoginFragment.this.getContext(), MainActivity.class);
+//        startActivity(i);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){

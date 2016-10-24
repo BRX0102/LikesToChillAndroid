@@ -29,6 +29,14 @@
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
+        <activity
+            android:name=".MainActivity"
+            android:label="Likes To Chill">
+            <intent-filter>
+                <action android:name="android.intent.action.MainActivity"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
