@@ -4,20 +4,29 @@ package com.csumb.pmoung.kiqback;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Calendar;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -33,10 +42,8 @@ public class LoginFragment extends Fragment {
     private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            AccessToken accessToken = loginResult.getAccessToken();
-            Profile profile = Profile.getCurrentProfile();
-            displayWelcomeMessage(profile);
-
+            setFacebookData(loginResult);
+            Log.i("UserCreateProfile", MainActivity.thisUser.toString());
 //            Intent to profile create when successfull
 
         }
@@ -51,6 +58,37 @@ public class LoginFragment extends Fragment {
 
         }
     };
+
+    public void setFacebookData(final LoginResult loginResult){
+        GraphRequest request = GraphRequest.newMeRequest(
+                loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback(){
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response){
+                        //Application code
+                        try{
+                            Log.i("Response",response.toString());
+
+                            Profile profile = Profile.getCurrentProfile();
+
+                            MainActivity.thisUser = new User(
+                                    Integer.parseInt(profile.getId()),
+                                    response.getJSONObject().getString("first_name"),
+                                    response.getJSONObject().getString("last_name"),
+                                    "00000",
+                                    response.getJSONObject().getString("email"),
+                                    response.getJSONObject().getString("gender"),
+                                    response.getJSONObject().getString("birthday"),
+                                    "About");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+        );
+    }
 
     public LoginFragment() {
         // Required empty public constructor
@@ -73,7 +111,7 @@ public class LoginFragment extends Fragment {
 
     private void displayWelcomeMessage(Profile profile){
         if(profile != null){
-            mTextDetails.setText("Welcome " + profile.getName());
+            mTextDetails.setText("Welcome " + profile + " " + profile.getLastName());
         }
     }
 
