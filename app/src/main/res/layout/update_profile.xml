@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/firstNameUpdate"
+        android:text="First Name"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="First Name"
+        android:ems="10"
+        android:textSize="20sp"
+        android:id="@+id/editTextFirstNameUpdate"
+        android:editable="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/lastNameUpdate"
+        android:text="Last Name"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Last Name"
+        android:ems="10"
+        android:textSize="20sp"
+        android:id="@+id/editTextLastNameUpdate"
+        android:editable="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/locationUpdate"
+        android:text="Location"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Zip Code"
+        android:ems="10"
+        android:textSize="20sp"
+        android:id="@+id/editTextlocationUpdate"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/emailUpdate"
+        android:text="Email"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Example@email.swag"
+        android:ems="10"
+        android:textSize="20sp"
+        android:editable="false"
+        android:id="@+id/editTextEmailUpdate"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/genderUpdate"
+        android:textSize="15sp"
+        />
+
+
+</LinearLayout>
