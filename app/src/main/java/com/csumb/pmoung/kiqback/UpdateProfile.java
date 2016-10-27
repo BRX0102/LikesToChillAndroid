@@ -1,9 +1,28 @@
 package com.csumb.pmoung.kiqback;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
 /**
- * Created by BRX01 on 10/24/2016.
+ * Created by BRX01 on 10/27/2016.
  */
 
-public class UpdateProfile {
+public class UpdateProfile extends AppCompatActivity implements View.OnClickListener {
 
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.update_profile);
+
+        View updateButton = findViewById(R.id.updateNextButton);
+        updateButton.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.updateNextButton){
+
+        }
+    }
 }
