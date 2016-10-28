@@ -22,7 +22,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            facebook:srcCompat="@drawable/likes2chilllogo"
+            android:id="@+id/profile_pic"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="Welcome!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/login_button"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/text_details" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
@@ -31,18 +47,14 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp" />
+
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_weight="1">
-        <TextView
-            android:text="Welcome!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/login_button"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/text_details" />
+
     </LinearLayout>
 </LinearLayout>
