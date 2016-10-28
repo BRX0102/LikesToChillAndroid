@@ -65,6 +65,9 @@ public class LoginFragment extends Fragment {
             accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
+
+            Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
+            startActivity(toUpdate);
         }
 
         @Override
