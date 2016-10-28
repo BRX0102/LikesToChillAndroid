@@ -25,6 +25,8 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
         if(v.getId() == R.id.updateNextButton){
 //            Send the data to the database
 
+
+
 //            Move to the main activity
             Intent toMain = new Intent(this, MainActivity.class);
             startActivity(toMain);

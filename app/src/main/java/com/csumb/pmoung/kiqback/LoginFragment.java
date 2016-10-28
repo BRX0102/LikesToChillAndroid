@@ -43,9 +43,10 @@ public class LoginFragment extends Fragment {
         @Override
         public void onSuccess(LoginResult loginResult) {
             setFacebookData(loginResult);
-            Log.i("UserCreateProfile", MainActivity.thisUser.toString());
+//            Log.d("UserCreateProfile", MainActivity.thisUser.toString());
 //            Intent to profile create when successfull
-
+            Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
+            startActivity(toUpdate);
         }
 
         @Override
@@ -66,24 +67,21 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response){
                         //Application code
-                        try{
-                            Log.i("Response",response.toString());
+                        Log.i("Response",response.toString());
 
-                            Profile profile = Profile.getCurrentProfile();
+                        Profile profile = Profile.getCurrentProfile();
 
-                            MainActivity.thisUser = new User(
-                                    Integer.parseInt(profile.getId()),
-                                    response.getJSONObject().getString("first_name"),
-                                    response.getJSONObject().getString("last_name"),
-                                    "00000",
-                                    response.getJSONObject().getString("email"),
-                                    response.getJSONObject().getString("gender"),
-                                    response.getJSONObject().getString("birthday"),
-                                    "About");
+//                            MainActivity.thisUser = new User(
+//                                    Integer.parseInt(profile.getId()),
+//                                    response.getJSONObject().getString("first_name"),
+//                                    response.getJSONObject().getString("last_name"),
+//                                    "00000",
+//                                    response.getJSONObject().getString("email"),
+//                                    response.getJSONObject().getString("gender"),
+//                                    response.getJSONObject().getString("birthday"),
+//                                    "About");
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        MainActivity.thisUser = new User(1, "Sean", "O'Fallon", "93955", "sofallon@csumb.edu", "M", "2016-10-27", "About Sean");
 
                     }
                 }
