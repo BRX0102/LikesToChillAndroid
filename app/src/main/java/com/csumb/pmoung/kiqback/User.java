@@ -29,7 +29,7 @@ public class User {
     public User(int userId, String fName, String lName, String userLocation, String userEmail, String userGender,
                 String userDOB, String userAbout) {
         super();
-        Log.d("nub", fName);
+
         this.userId = userId;
         this.fName = fName;
         this.lName = lName;
@@ -38,6 +38,7 @@ public class User {
         this.userGender = userGender;
         this.userDOB = userDOB;
         this.userAbout = userAbout;
+        Log.d("nub", fName);
     }
 
     public int getUserId() {

@@ -63,8 +63,11 @@ public class LoginFragment extends Fragment {
         @Override
         public void onSuccess(LoginResult loginResult) {
             accessToken = loginResult.getAccessToken();
-            final Profile profile = Profile.getCurrentProfile();
+             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
+
+            String test = "testing123";
+            Log.d("TAG", test);
 
             GraphRequest request = GraphRequest.newMeRequest(
                     AccessToken.getCurrentAccessToken(),
@@ -76,22 +79,45 @@ public class LoginFragment extends Fragment {
                             // Application code
                             Log.d("response", String.valueOf(object));
 
-                            /*try {
+
+
+
+                            try {
+
+                                JSONObject getHometown = object.getJSONObject("hometown");
+                                Object level = getHometown.get("name");
+
+                                Log.d("check1n", level.toString());
+                                ///testing JSON call
+                                /*String fName = object.getString("name");
+                                Log.d("sweg", fName);
+
+                                        object.getInt("id");
+                                        object.getString("first_name");
+                                        object.getString("last_name");
+                                        object.getString("user_hometown");
+                                        object.getString("email");
+                                        object.getString("gender");
+                                        object.getString("user_birthday");
+                                        object.getString("user_about_me");*/
+
+                                String fName = object.getString("first_name");
+                                Log.d("sweg", fName);
 
                             } catch (JSONException e) {
 
                                 // Do something to recover ... or kill the app.
-                            }*/
+                            }
                         }
                     });
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link,email,gender, location");
+            parameters.putString("fields", "id, first_name, last_name, email, gender, hometown, birthday, about");
             request.setParameters(parameters);
             request.executeAsync();
 
-            Log.d("TAG", bundle2string(parameters));
+            //Log.d("TAG", bundle2string(parameters));
 
-            ////////COMMENTED CHANGE INTENT TO TEST LOGIN//////////////////
+            ////////COMMENTED CHANGE INTENT TO TEST LOGIN///////////////////////
             //Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
             //startActivity(toUpdate);
         }
@@ -192,7 +218,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupTextDetails(view);
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile","user_friends","email");
+        loginButton.setReadPermissions("public_profile","user_friends","email","user_hometown","user_birthday","user_about_me");
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, mCallback);
 
