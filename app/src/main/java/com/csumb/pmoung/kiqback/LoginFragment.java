@@ -84,25 +84,25 @@ public class LoginFragment extends Fragment {
 
                             try {
 
-                                JSONObject getHometown = object.getJSONObject("hometown");
-                                Object level = getHometown.get("name");
+                                JSONObject getLocation = object.getJSONObject("location");
+                                Object locationName = getLocation.get("name");
+                                //Log.d("check1n", level.toString());
 
-                                Log.d("check1n", level.toString());
-                                ///testing JSON call
-                                /*String fName = object.getString("name");
-                                Log.d("sweg", fName);
+                                /*///testing JSON call
+                                String fName = object.getString("name");
+                                Log.d("sweg", fName);*/
+                                MainActivity.thisUser = new User(
+                                        object.getInt("id"),
+                                        object.getString("first_name"),
+                                        object.getString("last_name"),
+                                        locationName.toString(),
+                                        object.getString("email"),
+                                        object.getString("gender"),
+                                        object.getString("birthday"),
+                                        object.getString("about"));
 
-                                        object.getInt("id");
-                                        object.getString("first_name");
-                                        object.getString("last_name");
-                                        object.getString("user_hometown");
-                                        object.getString("email");
-                                        object.getString("gender");
-                                        object.getString("user_birthday");
-                                        object.getString("user_about_me");*/
-
-                                String fName = object.getString("first_name");
-                                Log.d("sweg", fName);
+                                /*String fName = object.getString("first_name");
+                                Log.d("sweg", fName);*/
 
                             } catch (JSONException e) {
 
@@ -111,7 +111,7 @@ public class LoginFragment extends Fragment {
                         }
                     });
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "id, first_name, last_name, email, gender, hometown, birthday, about");
+            parameters.putString("fields", "id, first_name, last_name, email, gender, hometown, birthday, about, location");
             request.setParameters(parameters);
             request.executeAsync();
 
@@ -218,7 +218,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupTextDetails(view);
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile","user_friends","email","user_hometown","user_birthday","user_about_me");
+        loginButton.setReadPermissions("public_profile","user_friends","email","user_hometown","user_birthday","user_about_me","user_location");
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, mCallback);
 
