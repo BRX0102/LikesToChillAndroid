@@ -63,11 +63,37 @@ public class LoginFragment extends Fragment {
         @Override
         public void onSuccess(LoginResult loginResult) {
             accessToken = loginResult.getAccessToken();
-            Profile profile = Profile.getCurrentProfile();
+            final Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
 
-            Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
-            startActivity(toUpdate);
+            GraphRequest request = GraphRequest.newMeRequest(
+                    AccessToken.getCurrentAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(
+                                JSONObject object,
+                                GraphResponse response) {
+                            // Application code
+                            Log.d("response", String.valueOf(object));
+
+                            /*try {
+
+                            } catch (JSONException e) {
+
+                                // Do something to recover ... or kill the app.
+                            }*/
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,link,email,gender, location");
+            request.setParameters(parameters);
+            request.executeAsync();
+
+            Log.d("TAG", bundle2string(parameters));
+
+            ////////COMMENTED CHANGE INTENT TO TEST LOGIN//////////////////
+            //Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
+            //startActivity(toUpdate);
         }
 
         @Override
@@ -80,37 +106,6 @@ public class LoginFragment extends Fragment {
 
         }
     };
-
-    public void setFacebookData(final LoginResult loginResult){
-        GraphRequest request = GraphRequest.newMeRequest(
-                loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback(){
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response){
-                        //Application code
-                        try{
-                            Log.i("Response",response.toString());
-
-                            Profile profile = Profile.getCurrentProfile();
-
-                            MainActivity.thisUser = new User(
-                                    Integer.parseInt(profile.getId()),
-                                    response.getJSONObject().getString("first_name"),
-                                    response.getJSONObject().getString("last_name"),
-                                    "00000",
-                                    response.getJSONObject().getString("email"),
-                                    response.getJSONObject().getString("gender"),
-                                    response.getJSONObject().getString("birthday"),
-                                    "About");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-        );
-    }
 
     public LoginFragment() {
         // Required empty public constructor
@@ -137,31 +132,7 @@ public class LoginFragment extends Fragment {
     private void displayWelcomeMessage(Profile profile){
         if(profile != null){
 
-            Uri uri = profile.getProfilePictureUri(300,300);
 
-            mTextDetails.setText("Welcome " + profile.getName());
-            String sample = "https://graph.facebook.com/" + profile.getId() + "/picture?type=large&redirect=true&width=500&height=500";
-            ImageView image = (ImageView)getView().findViewById(R.id.profile_pic);
-            DownloadImageWithURLTask downloadTask = new DownloadImageWithURLTask(image);
-            downloadTask.execute(sample);
-
-            GraphRequest request = GraphRequest.newMeRequest(
-                    AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(
-                                JSONObject object,
-                                GraphResponse response) {
-                            // Application code
-                            Log.d("response", String.valueOf(object));
-                        }
-                    });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link,email,gender, location");
-            request.setParameters(parameters);
-            request.executeAsync();
-
-            Log.d("TAG", bundle2string(parameters));
             /*JSONObject mainObject = new JSONObject(Your_Sring_data);
             JSONObject uniObject = mainObject.getJSONObject("university");
             String  uniName = uniObject.getJsonString("name");
@@ -221,7 +192,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupTextDetails(view);
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public profile","user_friends","email");
+        loginButton.setReadPermissions("public_profile","user_friends","email");
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, mCallback);
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/KiqBack.iml" filepath="$PROJECT_DIR$/KiqBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/LikesToChillAndroid.iml" filepath="$PROJECT_DIR$/LikesToChillAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

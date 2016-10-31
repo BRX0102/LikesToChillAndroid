@@ -1,5 +1,7 @@
 package com.csumb.pmoung.kiqback;
 
+import android.util.Log;
+
 /**
  * Created by BRX01 on 10/24/2016.
  * The User class is used to define the profile for the web app database as well as update
@@ -27,6 +29,7 @@ public class User {
     public User(int userId, String fName, String lName, String userLocation, String userEmail, String userGender,
                 String userDOB, String userAbout) {
         super();
+        Log.d("nub", fName);
         this.userId = userId;
         this.fName = fName;
         this.lName = lName;
