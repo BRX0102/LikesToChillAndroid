@@ -159,16 +159,13 @@
         android:hint="Why am I so beautiful? Everyone loves me. I'm so humble."
         android:id="@+id/editTextAboutUpdate" />
 
-    <LinearLayout
+
+
+    <Button
+        android:text="Update"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/updateNextButton" />
 
-        <Button
-            android:text="Update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/updateNextButton" />
-
-    </LinearLayout>
 
 </LinearLayout>
