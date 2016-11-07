@@ -46,7 +46,7 @@ public class LoginTest {
         onView(withId(R.id.text_details)).check(matches(withText("Welcome!")));
     }
 
-    @Test
+    /*@Test
     public void clickFaceBookLoginButton_opensLogin() throws Exception {
         onView(withId(R.id.login_button))
                 .perform(click());
@@ -56,13 +56,13 @@ public class LoginTest {
             e.printStackTrace();
         }
         clickXY(542, 886);
-        typeText("luv2splooge@gmail.com");
+        typeText("");
         clickXY(555, 1014);
-        typeText("4658516Pm1");
+        typeText("");
         clickXY(533, 668);
         onView(withId(R.id.text_details))
                 .check(matches(withText("Welcome Ritty Phon")));
-    }
+    }*/
 
 
     public static ViewAction clickXY(final int x, final int y){
