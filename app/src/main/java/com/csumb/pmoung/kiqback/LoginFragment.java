@@ -26,6 +26,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.AccessToken;
 
 import com.facebook.HttpMethod;
 
@@ -144,16 +145,9 @@ public class LoginFragment extends Fragment {
 
         mCallbackManager = CallbackManager.Factory.create();
 
-
-
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
-    }
+
 
     private void displayWelcomeMessage(Profile profile){
         if(profile != null){
@@ -169,44 +163,6 @@ public class LoginFragment extends Fragment {
 
         }
     }
-
-    public static String bundle2string(Bundle bundle) {
-        if (bundle == null) {
-            return null;
-        }
-        String string = "Bundle{";
-        for (String key : bundle.keySet()) {
-            string += " " + key + " => " + bundle.get(key) + ";";
-        }
-        string += " }Bundle";
-        return string;
-    }
-
-    private class DownloadImageWithURLTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-        public DownloadImageWithURLTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String pathToFile = urls[0];
-            Bitmap bitmap = null;
-            try {
-                InputStream in = new java.net.URL(pathToFile).openStream();
-                bitmap = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
-
-
-
 
 
     private void setupTextDetails(View view){
