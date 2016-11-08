@@ -30,19 +30,5 @@ public class UserTest {
         assertTrue(idIs1);
     }
 
-    @Test
-    public void setUserId() throws Exception {
-        Boolean idIs100 = false;
-        try{
-            userTest.setUserId(100);
-            if(userTest.getUserId() == 100)
-            {
-                idIs100=true;
-            }
-        }catch(Exception e){
-            idIs100=false;
-        }
-
-        assertTrue(idIs100);
-    }
+    
 }
