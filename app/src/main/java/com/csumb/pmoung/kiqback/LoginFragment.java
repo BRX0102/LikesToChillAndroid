@@ -80,9 +80,6 @@ public class LoginFragment extends Fragment {
                             // Application code
                             Log.d("response", String.valueOf(object));
 
-
-
-
                             try {
 
                                 JSONObject getLocation = object.getJSONObject("location");

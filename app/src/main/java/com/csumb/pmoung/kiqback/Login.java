@@ -2,6 +2,11 @@ package com.csumb.pmoung.kiqback;
 
 import android.content.Context;
 import android.content.Intent;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -13,10 +18,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -32,6 +43,7 @@ import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 import android.content.Context;
@@ -77,19 +89,71 @@ import java.net.URI;
 import java.net.URL;
 
 
-import static com.csumb.pmoung.kiqback.R.id.button2;
-import static com.csumb.pmoung.kiqback.R.id.imageView;
-import static com.csumb.pmoung.kiqback.R.id.login_button;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 import static java.lang.Thread.sleep;
 
 import java.net.URL;
 import java.util.Arrays;
 
+import java.io.InputStream;
+
+
+        import android.content.Context;
+        import android.content.Intent;
+        import android.graphics.Bitmap;
+        import android.graphics.BitmapFactory;
+        import android.graphics.drawable.Drawable;
+        import android.net.Uri;
+        import android.os.AsyncTask;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import android.support.v4.app.Fragment;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+        import com.facebook.AccessToken;
+        import com.facebook.CallbackManager;
+        import com.facebook.FacebookCallback;
+        import com.facebook.FacebookException;
+        import com.facebook.FacebookSdk;
+        import com.facebook.GraphRequest;
+        import com.facebook.GraphResponse;
+
+        import com.facebook.HttpMethod;
+
+        import com.facebook.Profile;
+        import com.facebook.login.LoginResult;
+        import com.facebook.login.widget.LoginButton;
+        import com.facebook.login.widget.ProfilePictureView;
+
+        import org.json.JSONException;
+        import org.json.JSONObject;
+        import java.io.Console;
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.net.HttpURLConnection;
+        import java.net.URI;
+        import java.net.URL;
+
+
+
+        import static com.facebook.FacebookSdk.getApplicationContext;
+        import java.net.URL;
+        import java.util.Arrays;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+
+
 
 public class Login extends AppCompatActivity {
-
-
 
         String name;
         TextView mTextDetails;
@@ -240,4 +304,7 @@ public class Login extends AppCompatActivity {
         }
 
 
+
 }
+
+
