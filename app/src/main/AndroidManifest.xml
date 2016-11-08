@@ -45,6 +45,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TempLogout"
+            android:label="Temp Logout">
+            <intent-filter>
+                <action android:name="android.intent.action.TempLogout"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

@@ -3,6 +3,7 @@ package com.csumb.pmoung.kiqback;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -75,6 +77,7 @@ import java.net.URI;
 import java.net.URL;
 
 
+import static com.csumb.pmoung.kiqback.R.id.button2;
 import static com.csumb.pmoung.kiqback.R.id.imageView;
 import static com.csumb.pmoung.kiqback.R.id.login_button;
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -88,14 +91,15 @@ public class Login extends AppCompatActivity {
 
 
 
-
-        private TextView mTextDetails;
+        String name;
+        TextView mTextDetails;
         Context context;
         LoginButton loginButton;
         AccessToken accessToken;
         private CallbackManager mCallbackManager;
+        Button button3;
 
-        @Override
+        /*@Override
         public boolean onTouchEvent(MotionEvent event) {
             // MotionEvent object holds X-Y values
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -104,7 +108,9 @@ public class Login extends AppCompatActivity {
             }
 
             return super.onTouchEvent(event);
-        }
+        }*/
+
+
 
 
         @Override
@@ -119,12 +125,11 @@ public class Login extends AppCompatActivity {
             loginButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-
                     loginButton.setReadPermissions("public_profile","user_friends","email","user_hometown","user_birthday","user_about_me","user_location");
                     loginButton.registerCallback(mCallbackManager, mCallback);
                 }
-
             });
+
 
 
         }
@@ -135,10 +140,10 @@ public class Login extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
-                displayWelcomeMessage(profile);
 
-                String test = "testing123";
-                Log.d("TAG", test);
+                //Log.d("hiya", profile.getName());
+
+                displayWelcomeMessage(profile);
 
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
@@ -169,6 +174,8 @@ public class Login extends AppCompatActivity {
                                             object.getString("birthday"),
                                             object.getString("about"));
 
+
+
                                 /*String fName = object.getString("first_name");
                                 Log.d("sweg", fName);*/
 
@@ -186,8 +193,8 @@ public class Login extends AppCompatActivity {
                 //Log.d("TAG", bundle2string(parameters));
 
                 ////////COMMENTED CHANGE INTENT TO TEST LOGIN///////////////////////
-                //Intent toUpdate = new Intent(LoginFragment.this.getContext(), UpdateProfile.class);
-                //startActivity(toUpdate);
+                Intent toUpdate = new Intent(Login.this, TempLogout.class);
+                startActivity(toUpdate);
             }
 
             @Override
@@ -201,11 +208,6 @@ public class Login extends AppCompatActivity {
             }
         };
 
-
-
-
-
-
         private void displayWelcomeMessage(Profile profile){
             if(profile != null){
                 mTextDetails = (TextView)findViewById(R.id.text_details);
@@ -213,18 +215,23 @@ public class Login extends AppCompatActivity {
             }
         }
 
-
-
-
         @Override
         public void onResume(){
             super.onResume();
             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
 
+
+            if(profile != null){
+                Intent toUpdate = new Intent(Login.this, TempLogout.class);
+                startActivity(toUpdate);
+            }
+
+
+            /*Intent toUpdate = new Intent(Login.this, TempLogout.class);
+            startActivity(toUpdate);*/
 //        Intent to main if resuming
-//        Intent i = new Intent(LoginFragment.this.getContext(), MainActivity.class);
-//        startActivity(i);
+
         }
 
         public void onActivityResult(int requestCode, int resultCode, Intent data){

@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_weight="1">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -25,20 +26,22 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <TextView
-            android:text="You are logged out"
+            android:text="You are logged in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/login_button"
             android:layout_centerHorizontal="true"
-            android:id="@+id/text_details" />
+            android:id="@+id/textView2" />
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
+        <Button
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:text="Click me to logout"
+            />
+
+
 
 
     </LinearLayout>
