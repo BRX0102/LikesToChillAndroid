@@ -1,21 +1,17 @@
 #
 # Build configuration for Circle CI
 #
-
-general:
-    artifacts:
-        - /home/ubuntu/LikesToChillAndroid/app/build/outputs/apk/
-
-machine:
-    environment:
-        ANDROID_HOME: /usr/local/android-sdk-linux
-
-dependencies:
-    override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.2,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support
-        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
-
 test:
     override:
-        - (./gradlew assemble):
-            timeout: 360
+        - emulator -avd circleci-android23 -no-audio -no-window:
+			background: true
+			parallel: true
+			
+		# Wait for boot
+		- circle-android wait-for-boot
+		
+		- ./gradlew connectedAndroidTest
+		
+		- cp -r my-project/build/outputs $CIRCLE_ARTIFACTS
+		
+		- cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
