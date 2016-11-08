@@ -4,8 +4,8 @@
 test:
     override:
         - emulator -avd circleci-android22 -no-audio -no-window:
-			background: true
-			parallel: true
+		background: true
+		parallel: true
 			
 		# Wait for boot
 		- circle-android wait-for-boot
