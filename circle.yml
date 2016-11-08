@@ -25,7 +25,7 @@ dependencies:
         - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
 
 test:
-  override:
+    override:
     # start the emulator
     - emulator -avd circleci-android23 -no-audio -no-window:
         background: true
@@ -35,6 +35,6 @@ test:
     # run tests  against the emulator.
     - ./gradlew connectedAndroidTest
     # copy the build outputs to artifacts
-    - cp -r my-project/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r LikesToChillAndroid/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
-    - cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    - cp -r LikesToChillAndroid/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
