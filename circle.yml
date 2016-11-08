@@ -26,4 +26,4 @@ dependencies:
 
 test:
     override:
-        - ./gradlew assembleDebug
+        - ./gradlew build
