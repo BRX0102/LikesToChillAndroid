@@ -1,17 +1,29 @@
 #
 # Build configuration for Circle CI
 #
+general:
+    artifacts:
+        - /home/ubuntu/LikesToChillAndroid/app/build/outputs/apk/
+
+machine:
+    environment:
+        ANDROID_HOME: /usr/local/android-sdk-linux
+        GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+
+dependencies:
+    pre:
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-23
+        - echo y | android update sdk --no-ui --all --filter build-tools-23.0.3
+        - echo y | android update sdk --no-ui --all --filter android-23
+        - echo y | android update sdk --no-ui --all --filter tools
+        - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
+        - echo y | android update sdk --no-ui --all --filter extra-android-support
+        - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
+        - echo y | android update sdk --no-ui --all --filter extra-google-m2repository
+    override:
+        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
+
 test:
     override:
-        - emulator -avd circleci-android22 -no-audio -no-window:
-		background: true
-		parallel: true
-			
-		# Wait for boot
-		- circle-android wait-for-boot
-		
-		- ./gradlew connectedAndroidTest
-		
-		- cp -r my-project/build/outputs $CIRCLE_ARTIFACTS
-		
-		- cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+        - (./gradlew assemble):
+timeout: 360
